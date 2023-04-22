@@ -1,0 +1,31 @@
+{
+  "id": 11,
+  "username": "mpampis",
+  "movies": [
+    {
+      "id": "tt13677720",
+      "title": "Mugsey Asda Shopping",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDlmNTg1ZjUtNjkwOC00MGU3LTg0NzItZGE0Nzg2NGVjZmIxXkEyXkFqcGdeQXVyNDkzNTUzODA@._V1_SX300.jpg",
+      "year": "2016"
+    },
+    {
+      "id": "tt0264464",
+      "title": "Catch Me If You Can",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY5MzYzNjc5NV5BMl5BanBnXkFtZTYwNTUyNTc2._V1_SX300.jpg",
+      "year": "2002"
+    },
+    {
+      "id": "tt7594584",
+      "title": "Maria",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGIyN2NjYWUtYjExMC00MmFlLWFkYWMtMmNjZGFlMjMxZmFhXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_SX300.jpg",
+      "year": "2019"
+    },
+    {
+      "id": "tt19498174",
+      "title": "OKAY! The ASD Band Film",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjVhMTIzMzItZGU2MS00YWZhLWE5ZjktMjIyZWUyOTZkY2RkXkEyXkFqcGdeQXVyNjg2NjQxOTQ@._V1_SX300.jpg",
+      "year": "2022"
+    }
+  ],
+  "admin": false
+}

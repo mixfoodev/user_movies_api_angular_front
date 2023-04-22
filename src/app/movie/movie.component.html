@@ -1,0 +1,52 @@
+<ng-container *ngIf="movie$ | async as movie">
+  <section class="movie">
+    <div class="poster">
+      <img src="{{ movie.poster }}" alt="Catch Me If You Can" />
+    </div>
+    <div class="content">
+      <button
+        id="btn-favorites"
+        class="{{ isFavorite ? 'fav-remove' : 'fav-add' }}"
+        (click)="toggleFavorite(movie)"
+      >
+        {{ isFavorite ? "Remove" : "Add to favorites" }}
+      </button>
+      <h1 id="tt0264464">{{ movie.title }}</h1>
+      <p class="basic-stats">
+        <span class="stat">{{ movie.year }}</span
+        ><span class="stat">{{ movie.duration }}</span
+        ><span class="stat">{{ movie.genre }}</span>
+      </p>
+      <p class="rating">
+        <img src="assets/img/imdb.png" /><span>
+          {{ movie.imdbRating }} / 10</span
+        >
+      </p>
+      <p class="plot">{{ movie.plot }}.</p>
+      <p>
+        <span class="info">Direction</span
+        ><span class="values">{{ movie.director }}</span>
+      </p>
+      <p>
+        <span class="info">Actors</span
+        ><span class="values">{{ movie.actors }}</span>
+      </p>
+      <p>
+        <span class="info">Production</span
+        ><span class="values">{{ movie.production }}</span>
+      </p>
+      <p>
+        <span class="info">Box Office</span
+        ><span class="values">{{ movie.boxOffice }}</span>
+      </p>
+      <p>
+        <span class="info">Languages</span
+        ><span class="values">{{ movie.language }}</span>
+      </p>
+      <p>
+        <span class="info">Rated</span
+        ><span class="values">{{ movie.rated }}</span>
+      </p>
+    </div>
+  </section>
+</ng-container>

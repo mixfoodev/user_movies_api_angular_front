@@ -1,0 +1,12 @@
+<form (submit)="handleSearch()" id="search">
+  <input
+    [(ngModel)]="searchValue"
+    type="text"
+    name="movie"
+    id="movie"
+    placeholder="Search movie"
+  />
+  <button>
+    <i class="fa fa-search fa-lg" aria-hidden="false"></i>
+  </button>
+</form>

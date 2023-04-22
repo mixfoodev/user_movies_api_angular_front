@@ -1,0 +1,19 @@
+{
+  "id": 10,
+  "username": "admin",
+  "movies": [
+    {
+      "id": "tt0264464",
+      "title": "Catch Me If You Can",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY5MzYzNjc5NV5BMl5BanBnXkFtZTYwNTUyNTc2._V1_SX300.jpg",
+      "year": "2002"
+    },
+    {
+      "id": "tt3848892",
+      "title": "Baby",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTdhNjBjZDctYTlkYy00ZGIxLWFjYTktODk5ZjNlMzI4NjI3XkEyXkFqcGdeQXVyMjY1MjkzMjE@._V1_SX300.jpg",
+      "year": "2015"
+    }
+  ],
+  "admin": true
+}

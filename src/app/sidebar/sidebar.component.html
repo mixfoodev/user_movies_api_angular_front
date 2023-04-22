@@ -1,0 +1,29 @@
+<span (click)="hideSidebar()" class="dark-overlay"></span>
+<div *ngIf="isMobile" class="action">
+  <span (click)="handleLogout()" *ngIf="isAuthenticated" class="logout"
+    >Logout</span
+  >
+  <span
+    *ngIf="isAdmin || !isAuthenticated"
+    class="primary-action"
+    (click)="openUserForm()"
+    >{{ isAdmin ? "Add user" : "Login" }}</span
+  >
+</div>
+<h3>Favorites</h3>
+<hr />
+<div class="favorites">
+  <ul>
+    <li (click)="handleMovieClick(movie)" *ngFor="let movie of movies">
+      <div class="movie-item">
+        <div class="item-poster">
+          <img src="{{ movie.poster }}" alt="{{ movie.title }}" />
+        </div>
+        <div class="item-content">
+          <span class="item-title">{{ movie.title }}</span
+          ><span class="item-year">{{ movie.year }}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

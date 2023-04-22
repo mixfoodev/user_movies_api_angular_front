@@ -1,0 +1,48 @@
+<header>
+  <nav>
+    <div class="logo">
+      <h2>Movies</h2>
+    </div>
+    <div *ngIf="isFormVisible$ | async">
+      <form (submit)="userFormSubmit()" class="user-form">
+        <input
+          [(ngModel)]="username"
+          type="text"
+          name="username"
+          id="usernameInput"
+          placeholder="username"
+        />
+        <input
+          [(ngModel)]="password"
+          type="password"
+          name="password"
+          id="passwordInput"
+          placeholder="password"
+        />
+        <button type="submit">
+          <i class="fa-solid {{ isAdmin ? 'fa-add' : 'fa-key' }}"></i>
+          <span>{{ isAdmin ? "Add user" : "Login" }}</span>
+        </button>
+      </form>
+    </div>
+    <div class="action">
+      <span
+        (click)="handleLogout()"
+        *ngIf="!isMobile && isAuthenticated"
+        class="logout"
+        >Logout</span
+      >
+      <span
+        *ngIf="!isMobile && (!isAuthenticated || isAdmin)"
+        (click)="toggleUserForm()"
+        class="primary-action"
+        >{{ isAdmin ? "Add user" : "Login" }}</span
+      >
+    </div>
+    <i
+      *ngIf="isMobile"
+      (click)="toggleSideMenu()"
+      class="fa-solid fa-bars menu"
+    ></i>
+  </nav>
+</header>
