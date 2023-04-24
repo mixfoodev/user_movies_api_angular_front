@@ -16,8 +16,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
   userSubscription!: Subscription;
   movies: MovieListItem[] = [];
-  isAuthenticated = false;
-  isAdmin = false;
+  isAuthenticated = false; // ->
+  isAdmin = false; // todo na ta parw ayta ap to appcomponent?
 
   constructor(
     private store: Store<{

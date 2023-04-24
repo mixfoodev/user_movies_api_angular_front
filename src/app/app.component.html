@@ -1,7 +1,10 @@
 <app-navbar [isMobile]="isMobile" [isUserFormOpen]="isUserFormOpen">
 </app-navbar>
 <div class="container">
-  <aside *ngIf="!isMobile || isSideBarOpen" class="sidebar menu-open">
+  <!-- <aside *ngIf="!isMobile || isSideBarOpen" class="sidebar menu-open"> -->
+
+  <!--[@toggleSidebar]="!isMobile || isSideBarOpen ? 'show' : 'hide'"  -->
+  <aside [@toggleSidebar]="sidebarState" class="sidebar menu-open">
     <app-sidebar [isMobile]="isMobile"></app-sidebar>
   </aside>
 

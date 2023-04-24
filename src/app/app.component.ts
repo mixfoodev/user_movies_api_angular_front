@@ -6,13 +6,13 @@ import { SideMenuActions, UserFormActions } from './store/actions/app.actions';
 import { User } from './interfaces/user.interfaces';
 import { UserActions } from './store/actions/user.actions';
 import { ToastState } from './interfaces/app.interfaces';
-import { toastToggleAnimation } from './app.animations';
+import { sidebarToggleAnimation, toastToggleAnimation } from './app.animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [toastToggleAnimation],
+  animations: [toastToggleAnimation, sidebarToggleAnimation],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private breakPointSubscription!: Subscription;
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isMobile = false;
   isSideBarOpen = false;
   isUserFormOpen = false;
+  sidebarState = !this.isMobile || this.isSideBarOpen ? 'show' : 'hide';
 
   constructor(
     public breakpointObserver: BreakpointObserver,
@@ -44,9 +45,12 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           console.log(state.breakpoints);
+          if (!this.isSideBarOpen) this.sidebarState = 'silent';
+          //this.sidebarState = !this.isSideBarOpen ? 'silent' : 'show';
           this.isMobile = true;
         } else {
           this.isMobile = false;
+          this.sidebarState = 'show';
         }
       });
 
@@ -60,6 +64,8 @@ export class AppComponent implements OnInit, OnDestroy {
       .select('sidebarMenu')
       .subscribe((state) => {
         this.isSideBarOpen = state;
+        this.sidebarState =
+          !this.isMobile || this.isSideBarOpen ? 'show' : 'hide';
       });
 
     this.userSubscription = this.store

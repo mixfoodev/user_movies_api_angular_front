@@ -16,7 +16,7 @@ import { userFormState } from '../store/reducers/app.reducer';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
-  @Input() isUserFormOpen = false;
+  @Input() isUserFormOpen = false; //todo na to tsekarw kai an einai na to svisw
   formState$: Observable<userFormState>;
   userSubscription!: Subscription;
 
