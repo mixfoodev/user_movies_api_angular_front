@@ -4,6 +4,7 @@ import { Observable, Subscription, combineLatest, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { User } from '../interfaces/user.interfaces';
 import { UserActions } from '../store/actions/user.actions';
+import { ToastActions } from '../store/actions/app.actions';
 
 @Component({
   selector: 'app-movie',
@@ -13,7 +14,6 @@ import { UserActions } from '../store/actions/user.actions';
 export class MovieComponent implements OnInit, OnDestroy {
   movie$!: Observable<Movie>;
   user$!: Observable<User>;
-  //isFavorite$!: Observable<boolean>;
   isFavorite = false;
   user!: User;
 
@@ -50,6 +50,15 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   toggleFavorite(movie: Movie) {
+    if (!this.user) {
+      this.store.dispatch(
+        ToastActions.toastRequest({
+          msg: 'You have to log in for this action!',
+          success: false,
+        })
+      );
+    }
+
     if (this.isFavorite) {
       this.store.dispatch(
         UserActions.removeMovie.userRemovemovieRequest({

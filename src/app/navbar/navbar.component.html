@@ -3,8 +3,13 @@
     <div class="logo">
       <h2>Movies</h2>
     </div>
-    <div *ngIf="isFormVisible$ | async">
-      <form (submit)="userFormSubmit()" class="user-form">
+    <!-- <div *ngIf="isFormVisible$ | async"> -->
+    <div>
+      <form
+        [@openClose]="(formState$ | async)?.isVisible ? 'open' : 'closed'"
+        (submit)="userFormSubmit()"
+        class="user-form"
+      >
         <input
           [(ngModel)]="username"
           type="text"
@@ -19,8 +24,12 @@
           id="passwordInput"
           placeholder="password"
         />
-        <button type="submit">
-          <i class="fa-solid {{ isAdmin ? 'fa-add' : 'fa-key' }}"></i>
+        <button type="submit" [disabled]="(formState$ | async)?.isSending">
+          <i
+            class="fa-solid {{
+              (formState$ | async)?.isSending ? 'fa-flip' : ''
+            }} {{ isAdmin ? 'fa-add' : 'fa-key' }}"
+          ></i>
           <span>{{ isAdmin ? "Add user" : "Login" }}</span>
         </button>
       </form>

@@ -17,7 +17,7 @@
     <app-movie></app-movie>
     <!-- <div class="toast" style="display: none"></div> -->
     <div
-      *ngIf="toast.show"
+      [@toggleToast]="toast.show ? 'show' : 'hide'"
       [ngStyle]="{ 'background-color': toast.success ? 'green' : '#b30505' }"
       class="toast"
     >

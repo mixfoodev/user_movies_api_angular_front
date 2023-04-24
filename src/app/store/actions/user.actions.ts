@@ -7,12 +7,19 @@ type UserFormType = {
   password: string;
 };
 
+type ErrorResponse = {
+  status: number;
+  error: {
+    error: string;
+  };
+};
+
 const UserLoginActions = createActionGroup({
   source: 'User Login',
   events: {
     'User Login Request': props<UserFormType>(),
     'User Login Success': props<User>(),
-    'User Login Error': emptyProps,
+    'User Login Error': props<ErrorResponse>(),
   },
 });
 
@@ -21,7 +28,7 @@ const UserLogoutActions = createActionGroup({
   events: {
     'User Logout Request': emptyProps,
     'User Logout Success': emptyProps,
-    'User Logout Error': emptyProps,
+    'User Logout Error': props<ErrorResponse>(),
   },
 });
 
@@ -30,7 +37,7 @@ const UserCreateActions = createActionGroup({
   events: {
     'User Create Request': props<UserFormType>(),
     'User Create Success': emptyProps,
-    'User Create Error': emptyProps,
+    'User Create Error': props<ErrorResponse>(),
   },
 });
 

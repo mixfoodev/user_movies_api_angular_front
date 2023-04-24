@@ -6,11 +6,13 @@ import { SideMenuActions, UserFormActions } from './store/actions/app.actions';
 import { User } from './interfaces/user.interfaces';
 import { UserActions } from './store/actions/user.actions';
 import { ToastState } from './interfaces/app.interfaces';
+import { toastToggleAnimation } from './app.animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [toastToggleAnimation],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private breakPointSubscription!: Subscription;

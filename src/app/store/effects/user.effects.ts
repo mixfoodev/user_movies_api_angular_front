@@ -22,10 +22,11 @@ export class UserEffects {
           }),
           catchError((resp) =>
             of(
-              ToastActions.toastRequest({
+              UserActions.login.userLoginError(resp)
+              /* ToastActions.toastRequest({
                 msg: resp.error.error + '!',
                 success: false,
-              })
+              }) */
             )
           )
         )
@@ -112,6 +113,8 @@ export class UserEffects {
               if (error.status === 401)
                 return of(UserActions.retrieve.userInactive());
               return EMPTY;
+              // todo na bgalw to formsenderror kai na kanw sto kathena to diko tou error pou na akouei
+              // ena effect kai ayto an einai na kanei dispatch gia to toast
             })
           )
       )
@@ -188,6 +191,18 @@ export class UserEffects {
         ToastActions.toastRequest({
           msg: 'Movie removed successfully!',
           success: true,
+        })
+      )
+    )
+  );
+
+  userLoginError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.login.userLoginError),
+      map((resp) =>
+        ToastActions.toastRequest({
+          msg: resp.error.error,
+          success: false,
         })
       )
     )

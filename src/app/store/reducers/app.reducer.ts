@@ -6,12 +6,44 @@ import {
   errorOccurred,
 } from '../actions/app.actions';
 import { ToastState } from 'src/app/interfaces/app.interfaces';
+import { UserActions } from '../actions/user.actions';
+
+export interface userFormState {
+  isVisible: boolean;
+  isSending: boolean;
+}
+
+const initialFormState: userFormState = {
+  isVisible: false,
+  isSending: false,
+};
 
 export const userFormReducer = createReducer(
+  initialFormState,
+  on(UserFormActions.userFormToggled, (state) => ({
+    ...state,
+    isVisible: !state.isVisible,
+  })),
+  on(UserFormActions.userFormHide, (state) => initialFormState),
+  on(UserFormActions.userFormSending, (state) => ({
+    ...state,
+    isSending: true,
+  })),
+  on(
+    UserFormActions.userFormSendError,
+    UserActions.login.userLoginError,
+    (state) => ({
+      ...state,
+      isSending: false,
+    })
+  )
+);
+
+/* export const userFormReducer = createReducer(
   false,
   on(UserFormActions.userFormToggled, (state) => !state),
   on(UserFormActions.userFormHide, (state) => false)
-);
+); */
 
 export const sidebarMenuReducer = createReducer(
   false,
@@ -27,10 +59,6 @@ const toastState: ToastState = {
 
 export const toastReducer = createReducer(
   toastState,
-  on(ToastActions.toastShow, (_, payload) => {
-    return { ...payload, show: true };
-  }),
-  on(ToastActions.toastHide, () => {
-    return toastState;
-  })
+  on(ToastActions.toastShow, (_, payload) => ({ ...payload, show: true })),
+  on(ToastActions.toastHide, (state) => ({ ...state, show: false }))
 );
