@@ -12,27 +12,48 @@ import { ToastActions } from '../actions/app.actions';
 export class MoviesEffects {
   searchMovie$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MovieActions.movieSearchRequest),
+      ofType(
+        MovieActions.movieSearchRequest,
+        MovieActions.movieSearchFavoriteRequest
+      ),
       exhaustMap((payload) =>
         this.movieService.searchMovie(payload.title, payload.selector).pipe(
           map((movie) => {
             if (movie.Error) {
-              return ToastActions.toastRequest({
+              /*  return ToastActions.toastRequest({
                 msg: `Could not find movie "${payload.title}".`,
                 success: false,
+              }); */
+              return MovieActions.movieSearchError({
+                error: `Could not find movie "${payload.title}".`,
               });
             }
             return MovieActions.movieSearchSuccess(omdbToMovie(movie));
           }),
           catchError(() =>
             of(
-              ToastActions.toastRequest({
+              MovieActions.movieSearchError({
+                error: `Could not find movie "${payload.title}".`,
+              })
+              /* ToastActions.toastRequest({
                 msg: `Could not find movie "${payload.title}".`,
                 success: false,
-              })
+              }) */
             )
           )
         )
+      )
+    )
+  );
+
+  searchMovieFailed$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.movieSearchError),
+      map(({ error }) =>
+        ToastActions.toastRequest({
+          msg: error,
+          success: false,
+        })
       )
     )
   );

@@ -22,7 +22,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<{
-      movieState: { movie: Movie };
+      movieState: { movie: Movie; isSearching: boolean };
       userState: { user: User };
     }>
   ) {}

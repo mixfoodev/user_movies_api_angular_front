@@ -6,7 +6,10 @@
     id="movie"
     placeholder="Search movie"
   />
-  <button>
+  <button
+    [disabled]="isSearching$ | async"
+    class="{{ (isSearching$ | async) ? 'animate' : '' }}"
+  >
     <i class="fa fa-search fa-lg" aria-hidden="false"></i>
   </button>
 </form>

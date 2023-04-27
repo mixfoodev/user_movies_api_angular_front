@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SideMenuActions, UserFormActions } from '../store/actions/app.actions';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, map } from 'rxjs';
 import { User } from '../interfaces/user.interfaces';
 import { MovieListItem } from '../interfaces/movie.interfaces';
 import { UserActions } from '../store/actions/user.actions';
@@ -14,6 +14,7 @@ import { MovieActions } from '../store/actions/movie.actions';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
+  fetchingMovieId$!: Observable<string>;
   userSubscription!: Subscription;
   movies: MovieListItem[] = [];
   isAuthenticated = false; // ->
@@ -24,6 +25,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       userForm: boolean;
       sidebarMenu: boolean;
       userState: { user: User };
+      movieState: { fetchingMovieId: string };
     }>
   ) {}
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.isAdmin = user?.admin || false;
         this.movies = user?.movies ?? [];
       });
+
+    this.fetchingMovieId$ = this.store
+      .select('movieState')
+      .pipe(map((state) => state.fetchingMovieId));
   }
 
   openUserForm() {
@@ -47,7 +53,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   handleMovieClick(movie: MovieListItem) {
     this.store.dispatch(
-      MovieActions.movieSearchRequest({ title: movie.id, selector: 'i' })
+      MovieActions.movieSearchFavoriteRequest({
+        title: movie.id,
+        selector: 'i',
+      })
     );
   }
 

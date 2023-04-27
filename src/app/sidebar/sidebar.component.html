@@ -14,7 +14,11 @@
 <hr />
 <div class="favorites">
   <ul>
-    <li (click)="handleMovieClick(movie)" *ngFor="let movie of movies">
+    <li
+      (click)="handleMovieClick(movie)"
+      *ngFor="let movie of movies"
+      class="{{ (fetchingMovieId$ | async) === movie.id ? 'fa-fade' : '' }}"
+    >
       <div class="movie-item">
         <div class="item-poster">
           <img src="{{ movie.poster }}" alt="{{ movie.title }}" />

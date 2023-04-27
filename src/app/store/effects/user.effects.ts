@@ -61,6 +61,7 @@ export class UserEffects {
             return UserActions.create.userCreateSuccess();
           }),
           catchError((error) => {
+            // todo an yparxei o xristis den to emfanizei
             if (error.status === 401)
               return of(UserActions.retrieve.userInactive());
             return EMPTY;
@@ -132,6 +133,7 @@ export class UserEffects {
               return UserActions.removeMovie.userRemovemovieSuccess(movie);
             }),
             catchError((error) => {
+              // todo na tsekarw kai to 400 dld an den uparxei katholou token
               if (error.status === 401)
                 return of(UserActions.retrieve.userInactive());
               return EMPTY;
@@ -199,12 +201,13 @@ export class UserEffects {
   userLoginError$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.login.userLoginError),
-      map((resp) =>
-        ToastActions.toastRequest({
-          msg: resp.error.error,
+      map((resp) => {
+        const msg = resp.error?.error ?? 'Could not reach server!';
+        return ToastActions.toastRequest({
+          msg,
           success: false,
-        })
-      )
+        });
+      })
     )
   );
 }

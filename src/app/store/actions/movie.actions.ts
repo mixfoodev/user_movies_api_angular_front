@@ -8,6 +8,10 @@ export const MovieActions = createActionGroup({
       title: string;
       selector: 't' | 'i';
     }>(),
+    'Movie Search Favorite Request': props<{
+      title: string;
+      selector: 't' | 'i';
+    }>(),
     'Movie Search Success': props<Movie>(),
     'Movie Search Error': props<{ error: string }>(),
     //'Movie Search Error': emptyProps,
