@@ -9,7 +9,7 @@ type UserFormType = {
 
 type ErrorResponse = {
   status: number;
-  error: {
+  error?: {
     error: string;
   };
 };
@@ -27,8 +27,7 @@ const UserLogoutActions = createActionGroup({
   source: 'User Logout',
   events: {
     'User Logout Request': emptyProps,
-    'User Logout Success': emptyProps,
-    'User Logout Error': props<ErrorResponse>(),
+    'User Logout Complete': emptyProps,
   },
 });
 

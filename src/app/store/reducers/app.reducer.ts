@@ -30,8 +30,8 @@ export const userFormReducer = createReducer(
     isSending: true,
   })),
   on(
-    UserFormActions.userFormSendError,
     UserActions.login.userLoginError,
+    UserActions.create.userCreateError,
     (state) => ({
       ...state,
       isSending: false,

@@ -11,7 +11,6 @@ export const UserFormActions = createActionGroup({
     'User Form Toggled': emptyProps(),
     'User Form Hide': emptyProps(),
     'User Form Sending': emptyProps(),
-    'User Form Send Error': props<{ status: number }>(),
   },
 });
 

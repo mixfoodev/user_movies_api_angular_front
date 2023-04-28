@@ -12,7 +12,7 @@ export const userReducer = createReducer(
   on(UserActions.login.userLoginSuccess, (state, payload) => {
     return { ...state, user: payload };
   }),
-  on(UserActions.logout.userLogoutSuccess, (state) => {
+  on(UserActions.logout.userLogoutComplete, (state) => {
     return { ...state, user: undefined };
   }),
   on(UserActions.retrieve.userRetrieveSuccess, (state, payload) => {

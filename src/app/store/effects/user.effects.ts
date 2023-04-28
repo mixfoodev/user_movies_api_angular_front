@@ -40,12 +40,13 @@ export class UserEffects {
       exhaustMap(() =>
         this.userService.logoutUser().pipe(
           map(() => {
-            return UserActions.logout.userLogoutSuccess();
+            return UserActions.logout.userLogoutComplete();
           }),
-          catchError((error) => {
-            if (error.status === 401)
-              return of(UserActions.retrieve.userInactive());
-            return EMPTY;
+          catchError(() => {
+            return of(UserActions.logout.userLogoutComplete());
+            // if (error.status === 401)
+            //   return of(UserActions.retrieve.userInactive());
+            // return EMPTY;
           })
         )
       )
@@ -61,10 +62,11 @@ export class UserEffects {
             return UserActions.create.userCreateSuccess();
           }),
           catchError((error) => {
+            return of(UserActions.create.userCreateError(error));
             // todo an yparxei o xristis den to emfanizei
-            if (error.status === 401)
-              return of(UserActions.retrieve.userInactive());
-            return EMPTY;
+            //   if (error.status === 401)
+            //     return of(UserActions.retrieve.userInactive());
+            //   return EMPTY;
           })
         )
       )
@@ -133,6 +135,7 @@ export class UserEffects {
               return UserActions.removeMovie.userRemovemovieSuccess(movie);
             }),
             catchError((error) => {
+              console.log(error);
               // todo na tsekarw kai to 400 dld an den uparxei katholou token
               if (error.status === 401)
                 return of(UserActions.retrieve.userInactive());
@@ -146,7 +149,7 @@ export class UserEffects {
   unsetUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.retrieve.userInactive),
-      map(() => UserActions.logout.userLogoutSuccess())
+      map(() => UserActions.logout.userLogoutComplete())
     )
   );
 
@@ -203,6 +206,20 @@ export class UserEffects {
       ofType(UserActions.login.userLoginError),
       map((resp) => {
         const msg = resp.error?.error ?? 'Could not reach server!';
+        return ToastActions.toastRequest({
+          msg,
+          success: false,
+        });
+      })
+    )
+  );
+  userCreateError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.create.userCreateError),
+      map((resp) => {
+        if (resp?.status === 401) return UserActions.retrieve.userInactive();
+
+        const msg = resp.error?.error + '!' ?? 'Some error occurred!';
         return ToastActions.toastRequest({
           msg,
           success: false,

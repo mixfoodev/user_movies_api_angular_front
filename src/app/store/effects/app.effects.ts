@@ -39,14 +39,4 @@ export class AppEffects {
       map(() => UserFormActions.userFormHide())
     )
   );
-
-  userFormErrorShowInactiveToast$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UserFormActions.userFormSendError),
-      filter((error) => error.status === 401),
-      map(() => {
-        return UserActions.retrieve.userInactive();
-      })
-    )
-  );
 }
