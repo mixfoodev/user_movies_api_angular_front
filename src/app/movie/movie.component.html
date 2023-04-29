@@ -1,7 +1,7 @@
 <ng-container *ngIf="movie$ | async as movie">
   <section class="movie">
     <div class="poster">
-      <img src="{{ movie.poster }}" alt="Catch Me If You Can" />
+      <img src="{{ movie.poster }}" alt="{{ movie.title }}-poster" />
     </div>
     <div class="content">
       <button
