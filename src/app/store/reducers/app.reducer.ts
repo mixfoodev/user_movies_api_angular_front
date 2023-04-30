@@ -3,7 +3,6 @@ import {
   ToastActions,
   SideMenuActions,
   UserFormActions,
-  errorOccurred,
 } from '../actions/app.actions';
 import { ToastState } from 'src/app/interfaces/app.interfaces';
 import { UserActions } from '../actions/user.actions';
@@ -38,12 +37,6 @@ export const userFormReducer = createReducer(
     })
   )
 );
-
-/* export const userFormReducer = createReducer(
-  false,
-  on(UserFormActions.userFormToggled, (state) => !state),
-  on(UserFormActions.userFormHide, (state) => false)
-); */
 
 export const sidebarMenuReducer = createReducer(
   false,
