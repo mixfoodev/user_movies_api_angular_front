@@ -46,7 +46,7 @@ const UserRetrieveActions = createActionGroup({
     'User Inactive': emptyProps,
     'User Retrieve Request': emptyProps,
     'User Retrieve Success': props<User>(),
-    'User Retrieve Error': emptyProps,
+    'User Retrieve Error': props<ErrorResponse>(),
   },
 });
 
@@ -55,7 +55,7 @@ const UserAddMovieActions = createActionGroup({
   events: {
     'User AddMovie Request': props<{ userId: number; movie: Movie }>(),
     'User AddMovie Success': props<MovieListItem>(),
-    'User AddMovie Error': emptyProps,
+    'User AddMovie Error': props<ErrorResponse>(),
   },
 });
 
@@ -64,7 +64,7 @@ const UserRemoveMovieActions = createActionGroup({
   events: {
     'User RemoveMovie Request': props<{ userId: number; movieId: string }>(),
     'User RemoveMovie Success': props<MovieListItem>(),
-    'User RemoveMovie Error': emptyProps,
+    'User RemoveMovie Error': props<ErrorResponse>(),
   },
 });
 

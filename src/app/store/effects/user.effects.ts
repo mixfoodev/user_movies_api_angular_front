@@ -17,18 +17,8 @@ export class UserEffects {
       ofType(UserActions.login.userLoginRequest),
       exhaustMap((payload) =>
         this.userService.loginUser(payload.username, payload.password).pipe(
-          map((user) => {
-            return UserActions.login.userLoginSuccess(user);
-          }),
-          catchError((resp) =>
-            of(
-              UserActions.login.userLoginError(resp)
-              /* ToastActions.toastRequest({
-                msg: resp.error.error + '!',
-                success: false,
-              }) */
-            )
-          )
+          map((user) => UserActions.login.userLoginSuccess(user)),
+          catchError((resp) => of(UserActions.login.userLoginError(resp)))
         )
       )
     )
@@ -39,15 +29,8 @@ export class UserEffects {
       ofType(UserActions.logout.userLogoutRequest),
       exhaustMap(() =>
         this.userService.logoutUser().pipe(
-          map(() => {
-            return UserActions.logout.userLogoutComplete();
-          }),
-          catchError(() => {
-            return of(UserActions.logout.userLogoutComplete());
-            // if (error.status === 401)
-            //   return of(UserActions.retrieve.userInactive());
-            // return EMPTY;
-          })
+          map(() => UserActions.logout.userLogoutComplete()),
+          catchError(() => of(UserActions.logout.userLogoutComplete()))
         )
       )
     )
@@ -58,16 +41,8 @@ export class UserEffects {
       ofType(UserActions.create.userCreateRequest),
       exhaustMap((payload) =>
         this.userService.createUser(payload.username, payload.password).pipe(
-          map(() => {
-            return UserActions.create.userCreateSuccess();
-          }),
-          catchError((error) => {
-            return of(UserActions.create.userCreateError(error));
-            // todo an yparxei o xristis den to emfanizei
-            //   if (error.status === 401)
-            //     return of(UserActions.retrieve.userInactive());
-            //   return EMPTY;
-          })
+          map(() => UserActions.create.userCreateSuccess()),
+          catchError((error) => of(UserActions.create.userCreateError(error)))
         )
       )
     )
@@ -78,16 +53,10 @@ export class UserEffects {
       ofType(UserActions.retrieve.userRetrieveRequest),
       exhaustMap(() =>
         this.userService.getUserSession().pipe(
-          map((user) => {
-            return UserActions.retrieve.userRetrieveSuccess(user);
-          }),
-          catchError((error) => {
-            // JWT has been expired
-            if (error.status === 401)
-              return of(UserActions.retrieve.userInactive());
-            // JWT does not exist
-            return EMPTY;
-          })
+          map((user) => UserActions.retrieve.userRetrieveSuccess(user)),
+          catchError((error) =>
+            of(UserActions.retrieve.userRetrieveError(error))
+          )
         )
       )
     )
@@ -96,7 +65,10 @@ export class UserEffects {
   refreshUserSession$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(MovieActions.movieSearchRequest),
+        ofType(
+          MovieActions.movieSearchRequest,
+          MovieActions.movieSearchFavoriteRequest
+        ),
         exhaustMap(() => this.userService.refreshUserSession())
       ),
     { dispatch: false }
@@ -109,16 +81,10 @@ export class UserEffects {
         this.userService
           .addMovieToUser(payload.userId, toMovieListItem(payload.movie))
           .pipe(
-            map((movie) => {
-              return UserActions.addMovie.userAddmovieSuccess(movie);
-            }),
-            catchError((error) => {
-              if (error.status === 401)
-                return of(UserActions.retrieve.userInactive());
-              return EMPTY;
-              // todo na bgalw to formsenderror kai na kanw sto kathena to diko tou error pou na akouei
-              // ena effect kai ayto an einai na kanei dispatch gia to toast
-            })
+            map((movie) => UserActions.addMovie.userAddmovieSuccess(movie)),
+            catchError((error) =>
+              of(UserActions.addMovie.userAddmovieError(error))
+            )
           )
       )
     )
@@ -131,18 +97,28 @@ export class UserEffects {
         this.userService
           .removeMovieFromUser(payload.userId, payload.movieId)
           .pipe(
-            map((movie) => {
-              return UserActions.removeMovie.userRemovemovieSuccess(movie);
-            }),
-            catchError((error) => {
-              console.log(error);
-              // todo na tsekarw kai to 400 dld an den uparxei katholou token
-              if (error.status === 401)
-                return of(UserActions.retrieve.userInactive());
-              return EMPTY;
-            })
+            map((movie) =>
+              UserActions.removeMovie.userRemovemovieSuccess(movie)
+            ),
+            catchError((error) =>
+              of(UserActions.removeMovie.userRemovemovieError(error))
+            )
           )
       )
+    )
+  );
+
+  showUserIsInactiveOrLogout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(
+        UserActions.retrieve.userRetrieveError,
+        UserActions.addMovie.userAddmovieError,
+        UserActions.removeMovie.userRemovemovieError
+      ),
+      map((error) => {
+        if (error.status === 401) return UserActions.retrieve.userInactive();
+        return UserActions.logout.userLogoutComplete();
+      })
     )
   );
 
