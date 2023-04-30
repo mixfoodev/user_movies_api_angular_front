@@ -2,11 +2,14 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { SideMenuActions, UserFormActions } from '../store/actions/app.actions';
-import { UserActions } from '../store/actions/user.actions';
-import { User } from '../interfaces/user.interfaces';
+import {
+  SideMenuActions,
+  UserFormActions,
+} from '../core/store/actions/app.actions';
+import { UserActions } from '../core/store/actions/user.actions';
+import { User } from '../core/interfaces/user.interfaces';
 import { formOpenCloseAnimation } from './navbar.animations';
-import { userFormState } from '../store/reducers/app.reducer';
+import { userFormState } from '../core/store/reducers/app.reducer';
 
 @Component({
   selector: 'app-navbar',

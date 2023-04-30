@@ -14,6 +14,5 @@ export const MovieActions = createActionGroup({
     }>(),
     'Movie Search Success': props<Movie>(),
     'Movie Search Error': props<{ error: string }>(),
-    //'Movie Search Error': emptyProps,
   },
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MovieActions } from '../store/actions/movie.actions';
+import { MovieActions } from '../core/store/actions/movie.actions';
 import { Observable, map } from 'rxjs';
 
 @Component({

@@ -2,7 +2,7 @@ import {
   Movie,
   MovieListItem,
   MovieOmdb,
-} from '../../interfaces/movie.interfaces';
+} from '../../core/interfaces/movie.interfaces';
 
 export function omdbToMovie(omdb: MovieOmdb): Movie {
   return {

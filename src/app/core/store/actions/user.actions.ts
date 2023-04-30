@@ -1,6 +1,6 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Movie, MovieListItem } from 'src/app/interfaces/movie.interfaces';
-import { User } from 'src/app/interfaces/user.interfaces';
+import { Movie, MovieListItem } from 'src/app/core/interfaces/movie.interfaces';
+import { User } from 'src/app/core/interfaces/user.interfaces';
 
 type UserFormType = {
   username: string;

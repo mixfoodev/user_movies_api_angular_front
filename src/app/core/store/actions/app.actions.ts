@@ -1,9 +1,4 @@
-import {
-  createAction,
-  createActionGroup,
-  emptyProps,
-  props,
-} from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 export const UserFormActions = createActionGroup({
   source: 'UserForm',
@@ -21,12 +16,6 @@ export const SideMenuActions = createActionGroup({
     'Side Menu Hide': emptyProps(),
   },
 });
-
-export const logoutAction = createAction('[LOGOUT]', () => emptyProps());
-
-export const errorOccurred = createAction('[ERROR]', () =>
-  props<{ error: string }>()
-);
 
 export const ToastActions = createActionGroup({
   source: 'Toast',

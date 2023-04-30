@@ -19,12 +19,12 @@ import {
   toastReducer,
   sidebarMenuReducer,
   userFormReducer,
-} from './store/reducers/app.reducer';
-import { MoviesEffects } from './store/effects/movie.effects';
-import { movieReducer } from './store/reducers/movie.reducer';
-import { userReducer } from './store/reducers/user.reducer';
-import { UserEffects } from './store/effects/user.effects';
-import { AppEffects } from './store/effects/app.effects';
+} from './core/store/reducers/app.reducer';
+import { MoviesEffects } from './core/store/effects/movie.effects';
+import { movieReducer } from './core/store/reducers/movie.reducer';
+import { userReducer } from './core/store/reducers/user.reducer';
+import { UserEffects } from './core/store/effects/user.effects';
+import { AppEffects } from './core/store/effects/app.effects';
 
 @NgModule({
   declarations: [

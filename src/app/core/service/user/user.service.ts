@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieListItem } from 'src/app/interfaces/movie.interfaces';
-import { User } from 'src/app/interfaces/user.interfaces';
+import { Movie, MovieListItem } from 'src/app/core/interfaces/movie.interfaces';
+import { User } from 'src/app/core/interfaces/user.interfaces';
 
 //const BASE_URL = 'http://localhost:8080/api/';
 const BASE_URL = '/api/';

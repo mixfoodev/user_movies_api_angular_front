@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
-import { MovieService } from 'src/app/service/movie/movie.service';
+import { MovieService } from 'src/app/core/service/movie/movie.service';
 import { MovieActions } from '../actions/movie.actions';
 import { omdbToMovie } from 'src/app/utill/mappers/movie.mappers';
-import { UserService } from 'src/app/service/user/user.service';
+import { UserService } from 'src/app/core/service/user/user.service';
 import { ToastActions } from '../actions/app.actions';
 
 @Injectable()

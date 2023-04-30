@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Movie } from '../interfaces/movie.interfaces';
+import { Movie } from '../core/interfaces/movie.interfaces';
 import { Observable, Subscription, combineLatest, map } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { User } from '../interfaces/user.interfaces';
-import { UserActions } from '../store/actions/user.actions';
-import { ToastActions } from '../store/actions/app.actions';
+import { User } from '../core/interfaces/user.interfaces';
+import { UserActions } from '../core/store/actions/user.actions';
+import { ToastActions } from '../core/store/actions/app.actions';
 
 @Component({
   selector: 'app-movie',

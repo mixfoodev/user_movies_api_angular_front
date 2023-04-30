@@ -2,10 +2,13 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { SideMenuActions, UserFormActions } from './store/actions/app.actions';
-import { User } from './interfaces/user.interfaces';
-import { UserActions } from './store/actions/user.actions';
-import { ToastState } from './interfaces/app.interfaces';
+import {
+  SideMenuActions,
+  UserFormActions,
+} from './core/store/actions/app.actions';
+import { User } from './core/interfaces/user.interfaces';
+import { UserActions } from './core/store/actions/user.actions';
+import { ToastState } from './core/interfaces/app.interfaces';
 import { sidebarToggleAnimation, toastToggleAnimation } from './app.animations';
 
 @Component({

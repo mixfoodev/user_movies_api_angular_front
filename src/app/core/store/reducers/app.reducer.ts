@@ -4,7 +4,7 @@ import {
   SideMenuActions,
   UserFormActions,
 } from '../actions/app.actions';
-import { ToastState } from 'src/app/interfaces/app.interfaces';
+import { ToastState } from 'src/app/core/interfaces/app.interfaces';
 import { UserActions } from '../actions/user.actions';
 
 export interface userFormState {

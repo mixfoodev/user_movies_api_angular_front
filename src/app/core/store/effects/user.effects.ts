@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { UserActions } from '../actions/user.actions';
-import { UserService } from 'src/app/service/user/user.service';
+import { UserService } from 'src/app/core/service/user/user.service';
 import { toMovieListItem } from 'src/app/utill/mappers/movie.mappers';
 import { MovieActions } from '../actions/movie.actions';
 import { ToastActions } from '../actions/app.actions';

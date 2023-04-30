@@ -1,11 +1,14 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SideMenuActions, UserFormActions } from '../store/actions/app.actions';
+import {
+  SideMenuActions,
+  UserFormActions,
+} from '../core/store/actions/app.actions';
 import { Subscription, Observable, map } from 'rxjs';
-import { User } from '../interfaces/user.interfaces';
-import { MovieListItem } from '../interfaces/movie.interfaces';
-import { UserActions } from '../store/actions/user.actions';
-import { MovieActions } from '../store/actions/movie.actions';
+import { User } from '../core/interfaces/user.interfaces';
+import { MovieListItem } from '../core/interfaces/movie.interfaces';
+import { UserActions } from '../core/store/actions/user.actions';
+import { MovieActions } from '../core/store/actions/movie.actions';
 
 @Component({
   selector: 'app-sidebar',
