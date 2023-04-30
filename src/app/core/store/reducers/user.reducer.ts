@@ -2,10 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { User } from 'src/app/core/interfaces/user.interfaces';
 import { UserActions } from '../actions/user.actions';
 import { MovieListItem } from 'src/app/core/interfaces/movie.interfaces';
-
-export const initiaUserState: {
-  user: User | undefined;
-} = { user: undefined };
+import { initiaUserState } from '../state/app.state';
 
 export const userReducer = createReducer(
   initiaUserState,

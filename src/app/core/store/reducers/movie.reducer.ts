@@ -1,12 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { Movie } from '../../interfaces/movie.interfaces';
 import { MovieActions } from '../actions/movie.actions';
-
-export const initialMovieState: {
-  movie: Movie | undefined;
-  isSearching: boolean;
-  fetchingMovieId: string;
-} = { movie: undefined, isSearching: false, fetchingMovieId: '' };
+import { initialMovieState } from '../state/app.state';
 
 export const movieReducer = createReducer(
   initialMovieState,
@@ -25,9 +19,4 @@ export const movieReducer = createReducer(
   on(MovieActions.movieSearchError, (state) => {
     return { ...state, isSearching: false, fetchingMovieId: '' };
   })
-  // on(MovieActions.movieSearchError, (state, payload) => {
-  //   console.log('MovieActions.movieSearchError');
-  //   console.log(payload);
-  //   return { ...state, error: payload.error };
-  // })
 );

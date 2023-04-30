@@ -6,3 +6,8 @@ export interface User {
   movies: MovieListItem[];
   admin: boolean;
 }
+
+export interface userFormState {
+  isVisible: boolean;
+  isSending: boolean;
+}

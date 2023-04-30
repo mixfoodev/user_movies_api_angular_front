@@ -7,9 +7,8 @@ import {
   UserFormActions,
 } from '../core/store/actions/app.actions';
 import { UserActions } from '../core/store/actions/user.actions';
-import { User } from '../core/interfaces/user.interfaces';
+import { User, userFormState } from '../core/interfaces/user.interfaces';
 import { formOpenCloseAnimation } from './navbar.animations';
-import { userFormState } from '../core/store/reducers/app.reducer';
 
 @Component({
   selector: 'app-navbar',

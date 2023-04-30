@@ -4,18 +4,8 @@ import {
   SideMenuActions,
   UserFormActions,
 } from '../actions/app.actions';
-import { ToastState } from 'src/app/core/interfaces/app.interfaces';
 import { UserActions } from '../actions/user.actions';
-
-export interface userFormState {
-  isVisible: boolean;
-  isSending: boolean;
-}
-
-const initialFormState: userFormState = {
-  isVisible: false,
-  isSending: false,
-};
+import { initialFormState, initialToastState } from '../state/app.state';
 
 export const userFormReducer = createReducer(
   initialFormState,
@@ -44,14 +34,8 @@ export const sidebarMenuReducer = createReducer(
   on(SideMenuActions.sideMenuHide, (state) => false)
 );
 
-const toastState: ToastState = {
-  msg: '',
-  success: true,
-  show: false,
-};
-
 export const toastReducer = createReducer(
-  toastState,
+  initialToastState,
   on(ToastActions.toastShow, (_, payload) => ({ ...payload, show: true })),
   on(ToastActions.toastHide, (state) => ({ ...state, show: false }))
 );
