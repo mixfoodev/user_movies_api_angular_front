@@ -10,4 +10,6 @@ export interface User {
 export interface userFormState {
   isVisible: boolean;
   isSending: boolean;
+  username: string;
+  password: string;
 }

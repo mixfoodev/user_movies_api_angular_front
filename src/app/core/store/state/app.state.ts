@@ -8,6 +8,7 @@ export const initialMovieState: {
   fetchingMovieId: string;
 } = { movie: undefined, isSearching: false, fetchingMovieId: '' };
 
+// todo na to allaksw ayto, na to kanw kateytheian user i undefined
 export const initiaUserState: {
   user: User | undefined;
 } = { user: undefined };
@@ -15,10 +16,12 @@ export const initiaUserState: {
 export const initialFormState: userFormState = {
   isVisible: false,
   isSending: false,
+  username: '',
+  password: '',
 };
 
 export const initialToastState: ToastState = {
   msg: '',
-  success: true,
+  success: false,
   show: false,
 };

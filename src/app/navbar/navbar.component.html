@@ -3,7 +3,6 @@
     <div class="logo">
       <h2>Movies</h2>
     </div>
-    <!-- <div *ngIf="isFormVisible$ | async"> -->
     <div>
       <form
         [@openClose]="(formState$ | async)?.isVisible ? 'open' : 'closed'"

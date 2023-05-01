@@ -6,8 +6,8 @@ import {
   SideMenuActions,
   UserFormActions,
 } from './core/store/actions/app.actions';
-import { User } from './core/interfaces/user.interfaces';
 import { UserActions } from './core/store/actions/user.actions';
+import { User } from './core/interfaces/user.interfaces';
 import { ToastState } from './core/interfaces/app.interfaces';
 import { sidebarToggleAnimation, toastToggleAnimation } from './app.animations';
 
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isUserFormOpen = false;
   sidebarState = !this.isMobile || this.isSideBarOpen ? 'show' : 'hide';
 
+  // todo na valw selectors
   constructor(
     public breakpointObserver: BreakpointObserver,
     private store: Store<{
@@ -49,7 +50,6 @@ export class AppComponent implements OnInit, OnDestroy {
         if (state.matches) {
           console.log(state.breakpoints);
           if (!this.isSideBarOpen) this.sidebarState = 'silent';
-          //this.sidebarState = !this.isSideBarOpen ? 'silent' : 'show';
           this.isMobile = true;
         } else {
           this.isMobile = false;

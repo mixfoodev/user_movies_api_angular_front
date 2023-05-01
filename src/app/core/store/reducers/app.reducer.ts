@@ -25,13 +25,22 @@ export const userFormReducer = createReducer(
       ...state,
       isSending: false,
     })
+  ),
+  on(
+    UserActions.login.userLoginRequest,
+    UserActions.create.userCreateRequest,
+    (state, { username, password }) => ({
+      ...state,
+      username,
+      password,
+    })
   )
 );
 
 export const sidebarMenuReducer = createReducer(
   false,
   on(SideMenuActions.sideMenuToggled, (state) => !state),
-  on(SideMenuActions.sideMenuHide, (state) => false)
+  on(SideMenuActions.sideMenuHide, (_) => false)
 );
 
 export const toastReducer = createReducer(

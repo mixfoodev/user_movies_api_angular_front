@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Input() isUserFormOpen = false; //todo na to tsekarw kai an einai na to svisw
   formState$: Observable<userFormState>;
   userSubscription!: Subscription;
+  formFieldsSubscription!: Subscription;
 
   isAuthenticated = false;
   isAdmin = false;
@@ -40,6 +41,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.isAuthenticated = user !== undefined;
         this.isAdmin = user?.admin || false;
       });
+
+    this.formFieldsSubscription = this.formState$.subscribe((state) => {
+      this.username = state.username;
+      this.password = state.password;
+    });
   }
 
   toggleUserForm() {
@@ -51,22 +57,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   userFormSubmit() {
-    if (!this.username || !this.password) return;
+    const usernameValue = this.username;
+    const passwordValue = this.password;
+    if (!usernameValue || !passwordValue) return;
 
     this.store.dispatch(UserFormActions.userFormSending());
 
     if (!this.isAuthenticated)
       this.store.dispatch(
         UserActions.login.userLoginRequest({
-          username: this.username,
-          password: this.password,
+          username: usernameValue,
+          password: passwordValue,
         })
       );
     else if (this.isAdmin)
       this.store.dispatch(
         UserActions.create.userCreateRequest({
-          username: this.username,
-          password: this.password,
+          username: usernameValue,
+          password: passwordValue,
         })
       );
   }
@@ -77,5 +85,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSubscription?.unsubscribe();
+    this.formFieldsSubscription?.unsubscribe();
   }
 }
