@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private store: Store<{
       userForm: boolean;
       sidebarMenu: boolean;
-      userState: { user: User };
+      userState: User | undefined;
       toastState: ToastState;
     }>
   ) {}
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSubscription = this.store
       .select('userState')
       .subscribe((state) => {
-        this.user = state.user;
+        this.user = state;
       });
 
     this.toastSubscription = this.store

@@ -6,33 +6,23 @@ import { initiaUserState } from '../state/app.state';
 
 export const userReducer = createReducer(
   initiaUserState,
+  on(
+    UserActions.login.userLoginSuccess,
+    UserActions.retrieve.userRetrieveSuccess,
+    (_, payload) => payload
+  ),
 
-  on(UserActions.login.userLoginSuccess, (state, payload) => ({
-    ...state,
-    user: payload,
-  })),
-  on(UserActions.logout.userLogoutComplete, (state) => ({
-    ...state,
-    user: undefined,
-  })),
-  on(UserActions.retrieve.userRetrieveSuccess, (state, payload) => ({
-    ...state,
-    user: payload,
-  })),
+  on(UserActions.logout.userLogoutComplete, (state) => undefined),
+
   on(UserActions.addMovie.userAddmovieSuccess, (state, payload) => ({
-    ...state,
-    user: {
-      ...(state.user as User),
-      movies: [...(state.user?.movies as MovieListItem[]), payload],
-    },
+    ...(state as User),
+    movies: [...(state?.movies as MovieListItem[]), payload],
   })),
+
   on(UserActions.removeMovie.userRemovemovieSuccess, (state, payload) => ({
-    ...state,
-    user: {
-      ...(state.user as User),
-      movies: (state.user?.movies as MovieListItem[]).filter(
-        (m) => m.id != payload.id
-      ),
-    },
+    ...(state as User),
+    movies: (state?.movies as MovieListItem[]).filter(
+      (m) => m.id != payload.id
+    ),
   }))
 );

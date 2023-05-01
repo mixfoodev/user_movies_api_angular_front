@@ -13,3 +13,8 @@ export interface userFormState {
   username: string;
   password: string;
 }
+
+export type UserFormType = {
+  username: string;
+  password: string;
+};

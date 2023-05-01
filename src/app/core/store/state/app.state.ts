@@ -8,10 +8,7 @@ export const initialMovieState: {
   fetchingMovieId: string;
 } = { movie: undefined, isSearching: false, fetchingMovieId: '' };
 
-// todo na to allaksw ayto, na to kanw kateytheian user i undefined
-export const initiaUserState: {
-  user: User | undefined;
-} = { user: undefined };
+export const initiaUserState: User | undefined = undefined;
 
 export const initialFormState: userFormState = {
   isVisible: false,

@@ -30,17 +30,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   password = '';
 
   constructor(
-    private store: Store<{ userForm: userFormState; userState: { user: User } }>
+    private store: Store<{ userForm: userFormState; userState: User }>
   ) {
     this.formState$ = this.store.select('userForm');
   }
   ngOnInit(): void {
-    this.userSubscription = this.store
-      .select('userState')
-      .subscribe(({ user }) => {
-        this.isAuthenticated = user !== undefined;
-        this.isAdmin = user?.admin || false;
-      });
+    this.userSubscription = this.store.select('userState').subscribe((user) => {
+      this.isAuthenticated = user !== undefined;
+      this.isAdmin = user?.admin || false;
+    });
 
     this.formFieldsSubscription = this.formState$.subscribe((state) => {
       this.username = state.username;

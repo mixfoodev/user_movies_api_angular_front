@@ -11,3 +11,10 @@ export interface ToastState {
   success: boolean;
   show: boolean;
 }
+
+export type ErrorResponse = {
+  status: number;
+  error?: {
+    error: string;
+  };
+};

@@ -14,8 +14,9 @@ import { ToastActions } from '../core/store/actions/app.actions';
 export class MovieComponent implements OnInit, OnDestroy {
   movie$!: Observable<Movie>;
   user$!: Observable<User>;
-  isFavorite = false;
   user!: User;
+
+  isFavorite = false;
 
   isFavoriteSubscription!: Subscription;
   userSubscription!: Subscription;
@@ -23,7 +24,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<{
       movieState: { movie: Movie; isSearching: boolean };
-      userState: { user: User };
+      userState: User;
     }>
   ) {}
 
@@ -32,9 +33,7 @@ export class MovieComponent implements OnInit, OnDestroy {
       .select('movieState')
       .pipe(map((movieState) => movieState.movie));
 
-    this.user$ = this.store
-      .select('userState')
-      .pipe(map((userState) => userState.user));
+    this.user$ = this.store.select('userState').pipe(map((user) => user));
 
     this.isFavoriteSubscription = combineLatest([this.movie$, this.user$])
       .pipe(

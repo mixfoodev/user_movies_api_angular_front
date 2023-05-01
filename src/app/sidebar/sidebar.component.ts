@@ -27,18 +27,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private store: Store<{
       userForm: boolean;
       sidebarMenu: boolean;
-      userState: { user: User };
+      userState: User;
       movieState: { fetchingMovieId: string };
     }>
   ) {}
   ngOnInit(): void {
-    this.userSubscription = this.store
-      .select('userState')
-      .subscribe(({ user }) => {
-        this.isAuthenticated = user !== undefined;
-        this.isAdmin = user?.admin || false;
-        this.movies = user?.movies ?? [];
-      });
+    this.userSubscription = this.store.select('userState').subscribe((user) => {
+      this.isAuthenticated = user !== undefined;
+      this.isAdmin = user?.admin || false;
+      this.movies = user?.movies ?? [];
+    });
 
     this.fetchingMovieId$ = this.store
       .select('movieState')

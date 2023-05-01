@@ -1,18 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Movie, MovieListItem } from 'src/app/core/interfaces/movie.interfaces';
-import { User } from 'src/app/core/interfaces/user.interfaces';
-
-type UserFormType = {
-  username: string;
-  password: string;
-};
-
-type ErrorResponse = {
-  status: number;
-  error?: {
-    error: string;
-  };
-};
+import { User, UserFormType } from 'src/app/core/interfaces/user.interfaces';
+import { ErrorResponse } from '../../interfaces/app.interfaces';
 
 const UserLoginActions = createActionGroup({
   source: 'User Login',
