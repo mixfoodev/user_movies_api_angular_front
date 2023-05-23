@@ -1,13 +1,13 @@
 <span (click)="hideSidebar()" class="dark-overlay"></span>
 <div *ngIf="isMobile" class="action">
-  <span (click)="handleLogout()" *ngIf="isAuthenticated" class="logout"
+  <span (click)="handleLogout()" *ngIf="user !== undefined" class="logout"
     >Logout</span
   >
   <span
-    *ngIf="isAdmin || !isAuthenticated"
+    *ngIf="user === undefined || user.admin"
     class="primary-action"
     (click)="openUserForm()"
-    >{{ isAdmin ? "Add user" : "Login" }}</span
+    >{{ user?.admin ? "Add user" : "Login" }}</span
   >
 </div>
 <h3>Favorites</h3>
@@ -16,7 +16,7 @@
   <ul>
     <li
       (click)="handleMovieClick(movie)"
-      *ngFor="let movie of movies"
+      *ngFor="let movie of user?.movies || []"
       class="{{ (fetchingMovieId$ | async) === movie.id ? 'fa-fade' : '' }}"
     >
       <div class="movie-item">

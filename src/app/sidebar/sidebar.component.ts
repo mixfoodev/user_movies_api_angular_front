@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   SideMenuActions,
   UserFormActions,
 } from '../core/store/actions/app.actions';
-import { Subscription, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from '../core/interfaces/user.interfaces';
 import { MovieListItem } from '../core/interfaces/movie.interfaces';
 import { UserActions } from '../core/store/actions/user.actions';
@@ -15,13 +15,10 @@ import { MovieActions } from '../core/store/actions/movie.actions';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
   @Input() isMobile = false;
+  @Input() user: User | undefined;
   fetchingMovieId$!: Observable<string>;
-  userSubscription!: Subscription;
-  movies: MovieListItem[] = [];
-  isAuthenticated = false; // ->
-  isAdmin = false; // todo na ta parw ayta ap to appcomponent?
 
   constructor(
     private store: Store<{
@@ -31,13 +28,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
       movieState: { fetchingMovieId: string };
     }>
   ) {}
-  ngOnInit(): void {
-    this.userSubscription = this.store.select('userState').subscribe((user) => {
-      this.isAuthenticated = user !== undefined;
-      this.isAdmin = user?.admin || false;
-      this.movies = user?.movies ?? [];
-    });
 
+  ngOnInit(): void {
     this.fetchingMovieId$ = this.store
       .select('movieState')
       .pipe(map((state) => state.fetchingMovieId));
@@ -63,9 +55,5 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   handleLogout() {
     this.store.dispatch(UserActions.logout.userLogoutRequest());
-  }
-
-  ngOnDestroy(): void {
-    this.userSubscription?.unsubscribe();
   }
 }

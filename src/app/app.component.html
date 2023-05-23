@@ -1,10 +1,7 @@
 <app-navbar [isMobile]="isMobile"> </app-navbar>
 <div class="container">
-  <!-- <aside *ngIf="!isMobile || isSideBarOpen" class="sidebar menu-open"> -->
-
-  <!--[@toggleSidebar]="!isMobile || isSideBarOpen ? 'show' : 'hide'"  -->
   <aside [@toggleSidebar]="sidebarState" class="sidebar menu-open">
-    <app-sidebar [isMobile]="isMobile"></app-sidebar>
+    <app-sidebar [isMobile]="isMobile" [user]="user"></app-sidebar>
   </aside>
 
   <div (click)="hideModals()" class="content">
@@ -17,7 +14,6 @@
     <app-search></app-search>
 
     <app-movie></app-movie>
-    <!-- <div class="toast" style="display: none"></div> -->
     <div
       [@toggleToast]="toast.show ? 'show' : 'hide'"
       [ngStyle]="{ 'background-color': toast.success ? 'green' : '#b30505' }"
