@@ -4,6 +4,7 @@ import { MovieOmdb } from '../../interfaces/movie.interfaces';
 
 const MOVIE_URL = 'http://www.omdbapi.com/';
 const url1 = '../../assets/sample.json';
+//const API_KEY = '6af7dc79';
 const API_KEY = '6af7dc79';
 
 @Injectable({

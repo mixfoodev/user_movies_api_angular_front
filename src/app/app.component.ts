@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isSideBarOpen = false;
   sidebarState = !this.isMobile || this.isSideBarOpen ? 'show' : 'hide';
 
-  // todo na valw selectors
+  // todo implement ngrx selectors
   constructor(
     public breakpointObserver: BreakpointObserver,
     private store: Store<{
