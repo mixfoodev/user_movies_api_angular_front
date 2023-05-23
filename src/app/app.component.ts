@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
   toast!: ToastState;
   isMobile = false;
   isSideBarOpen = false;
-  isUserFormOpen = false;
   sidebarState = !this.isMobile || this.isSideBarOpen ? 'show' : 'hide';
 
   // todo na valw selectors
@@ -55,12 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isMobile = false;
           this.sidebarState = 'show';
         }
-      });
-
-    this.userFormSubscription = this.store
-      .select('userForm')
-      .subscribe((state) => {
-        this.isUserFormOpen = state;
       });
 
     this.sidebarMenuSubscription = this.store

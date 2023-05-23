@@ -18,7 +18,6 @@ import { formOpenCloseAnimation } from './navbar.animations';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input() isMobile = false;
-  @Input() isUserFormOpen = false; //todo na to tsekarw kai an einai na to svisw
   formState$: Observable<userFormState>;
   userSubscription!: Subscription;
   formFieldsSubscription!: Subscription;
