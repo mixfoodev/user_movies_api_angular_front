@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MovieOmdb } from '../../interfaces/movie.interfaces';
+import { environment } from './../../../../environments/environment';
 
 const MOVIE_URL = 'http://www.omdbapi.com/';
 const url1 = '../../assets/sample.json';
 //const API_KEY = '6af7dc79';
-const API_KEY = '6af7dc79';
+const API_KEY = environment.MOVIES_API_KEY;
 
 @Injectable({
   providedIn: 'root',
