@@ -1,5 +1,5 @@
 # About
-This demo project is an Angular frontend powered by ngrx, 
+This demo project is an Angular frontend powered by NgRx, 
 designed for the [User Movies API project](https://github.com/mixfoodev/jaxrs_user_movies_api).
 
 # Setup
